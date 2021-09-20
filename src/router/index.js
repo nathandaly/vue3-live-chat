@@ -21,7 +21,7 @@ const requireNoAuth = (to, from, next) => {
 
 const routes = [
     { path: '/chat', name: 'Chatroom', component: Chatroom, beforeEnter: requireAuth },
-    { path: '/', name: 'Welcome', component: Welcome, beforeEnter: requireNoAuth },
+    { path: '/', name: 'Welcome', component: Welcome },
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: Welcome, beforeEnter: requireNoAuth },
 ]
 

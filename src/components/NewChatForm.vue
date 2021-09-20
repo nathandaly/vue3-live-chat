@@ -9,12 +9,11 @@ const { error, addDocument } = useCollection('messages')
 const message = ref('')
 
 const handleSubmit = async () => {
-    const chat = {
+    await addDocument({
         name: user.value.displayName,
         message: message.value,
         createdAt: timestamp(),
-    }
-    await addDocument(chat)
+    })
     if (!error.value) {
         message.value = ''
     }

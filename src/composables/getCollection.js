@@ -9,8 +9,6 @@ const getCollection = (collectionName) => {
         .orderBy('createdAt', 'asc')
 
     const unsubscribe = collectionRef.onSnapshot((snapshot) => {
-        console.log('snapshot')
-
         let results = []
         snapshot.docs.forEach((doc) => {
             doc.data().createdAt && results.push({
