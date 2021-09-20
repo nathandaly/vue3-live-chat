@@ -1,22 +1,30 @@
 <script setup>
-import { ref } from "vue";
-import getUser from "../composables/getUser";
-import useCollection from "../composables/useCollection";
-import { timestamp } from "../firebase/config";
-import { EmojiHappyIcon } from "@heroicons/vue/outline";
+import { ref, watch } from 'vue';
+import getUser from '../composables/getUser';
+import useCollection from '../composables/useCollection';
+import { timestamp } from '../firebase/config';
 
 const { user } = getUser();
-const { error, addDocument } = useCollection("messages");
-const message = ref("");
+const { error, addDocument } = useCollection('messages');
+const message = ref('');
+const buttonDisabled = ref(true);
+
+watch(message, (message) => {
+  buttonDisabled.value = !message.length;
+})
 
 const handleSubmit = async () => {
+    if (!message.value) {
+        return
+    }
+
   await addDocument({
     name: user.value.displayName,
     message: message.value,
     createdAt: timestamp(),
   });
   if (!error.value) {
-    message.value = "";
+    message.value = '';
   }
 };
 </script>
@@ -33,10 +41,11 @@ const handleSubmit = async () => {
       />
       <div class="flex">
         <button
-          class="flex items-center justify-center w-24 h-full bg-blue-700 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700"
+          class="flex items-center justify-center w-24 h-full bg-blue-700 rounded-full disabled:opacity-60 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700"
           @click.prevent="handleSubmit"
           aria-label="Send Message"
           role="button"
+          :disabled="buttonDisabled"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
