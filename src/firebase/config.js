@@ -3,12 +3,12 @@ import 'firebase/compat/firestore'
 import 'firebase/compat/auth'
 
 const firebaseConfig = {
-    apiKey: process.env.FIREBASE_API_KEY,
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
     authDomain: "live-chat-demo-af57d.firebaseapp.com",
     projectId: "live-chat-demo-af57d",
     storageBucket: "live-chat-demo-af57d.appspot.com",
     messagingSenderId: "1022591306344",
-    appId: process.env.FIREBASE_APP_ID
+    appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 firebase.initializeApp(firebaseConfig)
