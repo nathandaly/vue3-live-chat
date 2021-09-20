@@ -20,13 +20,11 @@ watch(user, () => {
 <template>
   <div>
     <Navbar></Navbar>
-    <main class="flex-1 w-full min-w-0 mx-auto border-t border-gray-200 lg:w-3/5 lg:flex">
+    <main class="flex-1 w-full min-w-0 mx-auto border-t border-gray-200 lg:w-4/6 lg:flex">
         <!-- Primary column -->
         <section aria-labelledby="primary-heading" class="flex flex-col flex-1 h-full min-w-0 overflow-hidden lg:order-last">
           <div class="h-full p-6">
-            <div
-              class="w-full bg-white divide-y divide-gray-300 rounded-lg shadow-lg"
-            >
+            <div class="w-full bg-white divide-y divide-gray-300 rounded-lg shadow-lg">
               <div class="px-4 py-5 sm:p-6">
                 <ChatWindow />
               </div>
