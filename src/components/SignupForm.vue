@@ -2,9 +2,13 @@
 import { ref } from 'vue'
 import FormError from './FormError.vue'
 import useSignup from '../composables/useSignup'
+import getUser from '../composables/getUser'
+import useCollection from '../composables/useCollection'
+import { timestamp } from '../firebase/config'
 
 const emit = defineEmits(['ui:show:login', 'auth:signup:success'])
-
+const { addDocument } = useCollection('online')
+const { user } = getUser()
 const displayName = ref('')
 const email = ref('')
 const password = ref('')
@@ -15,6 +19,12 @@ const handleSubmit = async () => {
     await signup(email.value, password.value, displayName.value)
 
     if (!error.value) {
+        await addDocument({
+            uid: user.value.uid,
+            name: user.value.displayName,
+            email: user.value.email,
+            createdAt: timestamp(),
+        })
         emit('auth:signup:success');
     }
 }
