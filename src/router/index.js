@@ -11,7 +11,7 @@ const requireAuth = (to, from, next) => {
     next()
 }
 
-const noMatch = (to, from, next) => {
+const requireNoAuth = (to, from, next) => {
     let user = auth.currentUser
     if (!user) {
         next({ name: 'Welcome' })
@@ -21,8 +21,8 @@ const noMatch = (to, from, next) => {
 
 const routes = [
     { path: '/chat', name: 'Chatroom', component: Chatroom, beforeEnter: requireAuth },
-    { path: '/', name: 'Welcome', component: Welcome },
-    { path: '/:pathMatch(.*)*', name: 'NotFound', component: Welcome, beforeEnter: noMatch },
+    { path: '/', name: 'Welcome', component: Welcome, beforeEnter: requireNoAuth },
+    { path: '/:pathMatch(.*)*', name: 'NotFound', component: Welcome, beforeEnter: requireNoAuth },
 ]
 
 const router = createRouter({
