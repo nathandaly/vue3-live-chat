@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 import { firestore } from '../firebase/config'
 
 const getCollection = (collectionName) => {
@@ -8,8 +8,8 @@ const getCollection = (collectionName) => {
     const collectionRef = firestore.collection(collectionName)
         .orderBy('createdAt', 'asc')
 
-    collectionRef.onSnapshot((snapshot) => {
-        console.log(snapshot.docs)
+    const unsubscribe = collectionRef.onSnapshot((snapshot) => {
+        console.log('snapshot')
 
         let results = []
         snapshot.docs.forEach((doc) => {
@@ -24,6 +24,10 @@ const getCollection = (collectionName) => {
         console.error(err.message)
         documents.value = null
         error.value = `Error retrieving collection '${collectionName}'`
+    })
+
+    watchEffect((onInvalidate) => {
+        onInvalidate(() => unsubscribe())
     })
 
     return { error, documents }

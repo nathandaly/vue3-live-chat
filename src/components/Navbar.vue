@@ -1,6 +1,6 @@
 <template>
-    <div class="px-2 mx-auto bg-blue-500 max-w-7xl sm:px-6 lg:px-8">
-      <div class="relative flex items-center justify-between h-16">
+    <div class="px-2 bg-blue-500 sm:px-6 lg:px-8">
+      <div class="relative flex items-center justify-between h-16 mx-auto max-w-7xl">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
         </div>
         <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
@@ -17,7 +17,7 @@
               </MenuButton>
             </div>
             <transition enter-active-class="transition duration-100 ease-out" enter-from-class="transform scale-95 opacity-0" enter-to-class="transform scale-100 opacity-100" leave-active-class="transition duration-75 ease-in" leave-from-class="transform scale-100 opacity-100" leave-to-class="transform scale-95 opacity-0">
-              <MenuItems class="absolute right-0 w-48 py-1 mt-2 origin-top-right bg-white border border-gray-600 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <MenuItems class="absolute right-0 w-48 py-1 mt-2 origin-top-right bg-white border border-gray-400 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <MenuItem>
                   <p class="block px-4 py-2 text-xs text-gray-700">You are logged in as:  <strong>{{ user?.email }}</strong></p>
                 </MenuItem>

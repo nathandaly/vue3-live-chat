@@ -3,7 +3,7 @@ import 'firebase/compat/firestore'
 import 'firebase/compat/auth'
 
 const firebaseConfig = {
-    //...
+ //.. The projectId is the only required property.
 };
 
 firebase.initializeApp(firebaseConfig)
